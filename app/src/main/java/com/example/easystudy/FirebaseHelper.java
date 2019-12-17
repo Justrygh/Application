@@ -38,7 +38,7 @@ public class FirebaseHelper {
 
     }
 
-    public void readUser(){
+    public void readUser(final OnGetDataListener getdata){
 
 
         mdatabase = FirebaseDatabase.getInstance();
@@ -49,6 +49,12 @@ public class FirebaseHelper {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
+
+
+//                user = dataSnapshot.child(FirebaseAuth.getInstance().getUid()).getValue(Users.class);
+//                Log.d("reading "," email ------ "+user.getEmail());
+
+
                 hm = new HashMap<>();
 
                 for (DataSnapshot childSnapshot: dataSnapshot.child(FirebaseAuth.getInstance().getUid()+"/progress").getChildren()) {
@@ -58,6 +64,7 @@ public class FirebaseHelper {
                u_email = dataSnapshot.child(FirebaseAuth.getInstance().getUid()).child("email").getValue(String.class);
                u_pass = dataSnapshot.child(FirebaseAuth.getInstance().getUid()).child("password").getValue(String.class);
                user = new Users(u_email,u_pass,hm);
+                getdata.onSuccess(user);
                 //user_var_update(u_email,u_pass,hm)
             }
 
@@ -68,6 +75,31 @@ public class FirebaseHelper {
         });
 
     }
+
+
+
+
+
+public interface OnGetDataListener {
+    //this is for callbacks
+    void onSuccess(Users usr);
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public void userUpdatemap(String key,Users user){
         mRef.child(key).setValue(user);
     }
