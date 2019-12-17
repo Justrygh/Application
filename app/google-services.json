@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "501377237446",
+    "firebase_url": "https://easystudy-e9dfc.firebaseio.com",
+    "project_id": "easystudy-e9dfc",
+    "storage_bucket": "easystudy-e9dfc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:501377237446:android:2ebbe4eb442134759432c7",
+        "android_client_info": {
+          "package_name": "com.example.easystudy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "501377237446-1kdit9sd9m4kb04chdq47agqv1ns8gv9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.easystudy",
+            "certificate_hash": "d4f9687ff3beced19d3cd2d4be30c5a21bcf87ad"
+          }
+        },
+        {
+          "client_id": "501377237446-4koe070ta3pcqbsln5as8mab7uvklq05.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC9uILxRjA5373XEy7n5iJYFvnzBeYZqus"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "501377237446-4koe070ta3pcqbsln5as8mab7uvklq05.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
