@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private EditText email_id , passwd_id;
     private Button login_ ,signup_;
     private FirebaseAuth mAuth;
-    protected Users studentUsers;
+    protected Users studentUsers = new Users(null,null);
 
 
 
@@ -115,6 +115,8 @@ public class MainActivity extends AppCompatActivity {
         if(user != null){
 
             startActivity(new Intent(MainActivity.this,HomeActivity.class));
+           // new FirebaseHelper().readUser();
+           // studentUsers
          //    user = FirebaseAuth.getInstance().getCurrentUser();
         }
 
