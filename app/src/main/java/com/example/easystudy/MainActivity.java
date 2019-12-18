@@ -33,7 +33,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         mAuth = FirebaseAuth.getInstance();
+//        if(mAuth.getCurrentUser()!= null){
+//            startActivity(new Intent(MainActivity.this,HomeActivity.class));
+//            finish();
+//        }
         email_id = (EditText)findViewById(R.id._email);
         passwd_id = (EditText)findViewById(R.id._passwd);
         login_ = (Button) findViewById(R.id._login);
@@ -43,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(is_ok(email_id.getText().toString().trim(),passwd_id.getText().toString().trim()))
-                register_fun(email_id.getText().toString().trim(),passwd_id.getText().toString().trim());
+                    register_fun(email_id.getText().toString().trim(),passwd_id.getText().toString().trim());
             }
         });
 
@@ -115,9 +120,9 @@ public class MainActivity extends AppCompatActivity {
         if(user != null){
 
             startActivity(new Intent(MainActivity.this,HomeActivity.class));
-           // new FirebaseHelper().readUser();
-           // studentUsers
-         //    user = FirebaseAuth.getInstance().getCurrentUser();
+            // new FirebaseHelper().readUser();
+            // studentUsers
+            //    user = FirebaseAuth.getInstance().getCurrentUser();
         }
 
 

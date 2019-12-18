@@ -7,6 +7,8 @@ public class Users {
     private   String Email , Password ;
     private Map<String,String> progress;
 
+    public Users(){}
+
     public Users (String E, String P){
         this.Email=E;
         this.Password=P;
@@ -15,12 +17,12 @@ public class Users {
         progress.put("python","0");
 
     }
-    public Users(Users u){
-        this.Email=u.Email;
-        this.Password=u.Password;
-        this.progress = u.progress;
-
-    }
+    //    public Users(Users u){
+//        this.Email=u.Email;
+//        this.Password=u.Password;
+//        this.progress = u.progress;
+//
+//    }
     public Users(String E, String P,HashMap<String,String> hm){
         this.Email=E;
         this.Password=P;
