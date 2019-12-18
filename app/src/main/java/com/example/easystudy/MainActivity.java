@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 //            startActivity(new Intent(MainActivity.this,HomeActivity.class));
 //            finish();
 //        }
+
         email_id = (EditText)findViewById(R.id._email);
         passwd_id = (EditText)findViewById(R.id._passwd);
         login_ = (Button) findViewById(R.id._login);

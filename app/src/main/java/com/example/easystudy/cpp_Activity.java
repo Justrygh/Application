@@ -103,13 +103,17 @@ public class cpp_Activity extends AppCompatActivity {
                     }
                 }
                 if(existsVar == true){
-                    vars_checkBox.setVisibility(View.INVISIBLE);
+                    //vars_checkBox.setVisibility(View.INVISIBLE);
+                    vars_checkBox.setChecked(true);
+                    vars_checkBox.setEnabled(false);
                 }
                 if(existsStr == true){
-                    strings_checkBox.setVisibility(View.INVISIBLE);
+                    strings_checkBox.setChecked(true);
+                    strings_checkBox.setEnabled(false);
                 }
                 if(existsElse == true){
-                    if_else_checkBox.setVisibility(View.INVISIBLE);
+                    if_else_checkBox.setChecked(true);
+                    if_else_checkBox.setEnabled(false);
                 }
 
                 vars.setOnClickListener(new View.OnClickListener() {
