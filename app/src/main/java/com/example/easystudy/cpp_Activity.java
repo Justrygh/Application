@@ -106,10 +106,10 @@ public class cpp_Activity extends AppCompatActivity {
                     vars_checkBox.setVisibility(View.INVISIBLE);
                 }
                 if(existsStr == true){
-                    strings_checkBox.setSelected(true);
+                    strings_checkBox.setVisibility(View.INVISIBLE);
                 }
                 if(existsElse == true){
-                    if_else_checkBox.setSelected(true);
+                    if_else_checkBox.setVisibility(View.INVISIBLE);
                 }
 
                 vars.setOnClickListener(new View.OnClickListener() {
@@ -119,14 +119,9 @@ public class cpp_Activity extends AppCompatActivity {
                                 new Intent("android.intent.action.VIEW",
                                         Uri.parse("https://www.w3schools.com/cpp/cpp_variables.asp"));
                         startActivity(viewIntent);
-//                for(int i=0; i<helper.length(); i++){
-//                    if(helper.charAt(i) == '1'){
-//                        exists = true;
-//                        vars_checkBox.setSelected(true);
-//                    }
-                    if (existsVar == false) {
-                        vars_checkBox.setEnabled(true);
-                    }
+                        if (existsVar == false) {
+                            vars_checkBox.setEnabled(true);
+                        }
 
                     }
                 });
@@ -150,14 +145,20 @@ public class cpp_Activity extends AppCompatActivity {
                         Intent viewIntent =new Intent("android.intent.action.VIEW",
                                 Uri.parse("https://www.w3schools.com/cpp/cpp_strings.asp"));
                         startActivity(viewIntent);
-                        strings_checkBox.setEnabled(true);
+                        if (existsStr == false) {
+                            strings_checkBox.setEnabled(true);
+                        }
 
                     }
                 });
                 strings_checkBox.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        helper += '2';
                         strings_checkBox.setEnabled(false);
+                        Log.d("var check ", " prog = "+ fh.user.getProgress().get("cpp"));
+                        fh.user.getProgress().put("cpp",""+helper);
+                        fh.userUpdatemap(FirebaseAuth.getInstance().getUid(),fh.user);
 
                     }
                 });
@@ -169,7 +170,9 @@ public class cpp_Activity extends AppCompatActivity {
                         Intent viewIntent =new Intent("android.intent.action.VIEW",
                                 Uri.parse("https://www.w3schools.com/cpp/cpp_conditions.asp"));
                         startActivity(viewIntent);
-                        if_else_checkBox.setEnabled(true);
+                        if (existsElse == false) {
+                            if_else_checkBox.setEnabled(true);
+                        }
 
 
                     }
@@ -177,7 +180,11 @@ public class cpp_Activity extends AppCompatActivity {
                 if_else_checkBox.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        helper += '3';
                         if_else_checkBox.setEnabled(false);
+                        Log.d("var check ", " prog = "+ fh.user.getProgress().get("cpp"));
+                        fh.user.getProgress().put("cpp",""+helper);
+                        fh.userUpdatemap(FirebaseAuth.getInstance().getUid(),fh.user);
                     }
                 });
 
