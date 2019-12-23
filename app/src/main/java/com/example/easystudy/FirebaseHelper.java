@@ -22,8 +22,9 @@ import java.util.Map;
 public class FirebaseHelper {
 
     private FirebaseDatabase mdatabase;
-    private DatabaseReference mRef;
+    private DatabaseReference mRef ;
     protected Users user ;
+    protected Courses course;
 
     private static String u_email , u_pass;
     private static HashMap<String ,String> hm;
@@ -51,19 +52,19 @@ public class FirebaseHelper {
 
 
 
-//                user = dataSnapshot.child(FirebaseAuth.getInstance().getUid()).getValue(Users.class);
-//                Log.d("reading "," email ------ "+user.getEmail());
+                user = dataSnapshot.child(FirebaseAuth.getInstance().getUid()).getValue(Users.class);
+                Log.d("reading "," email ------ "+user.getEmail());
 
 
-                hm = new HashMap<>();
+//                hm = new HashMap<>();
+//
+//                for (DataSnapshot childSnapshot: dataSnapshot.child(FirebaseAuth.getInstance().getUid()+"/progress").getChildren()) {
+//                    hm.put(childSnapshot.getKey(), childSnapshot.getValue().toString());
+//                }
 
-                for (DataSnapshot childSnapshot: dataSnapshot.child(FirebaseAuth.getInstance().getUid()+"/progress").getChildren()) {
-                    hm.put(childSnapshot.getKey(), childSnapshot.getValue().toString());
-                }
-
-                u_email = dataSnapshot.child(FirebaseAuth.getInstance().getUid()).child("email").getValue(String.class);
-                u_pass = dataSnapshot.child(FirebaseAuth.getInstance().getUid()).child("password").getValue(String.class);
-                user = new Users(u_email,u_pass,hm);
+//                u_email = dataSnapshot.child(FirebaseAuth.getInstance().getUid()).child("email").getValue(String.class);
+//                u_pass = dataSnapshot.child(FirebaseAuth.getInstance().getUid()).child("password").getValue(String.class);
+//                user = new Users(u_email,u_pass,hm);
                 getdata.onSuccess(user);
                 //user_var_update(u_email,u_pass,hm)
             }
@@ -83,11 +84,38 @@ public class FirebaseHelper {
     public interface OnGetDataListener {
         //this is for callbacks
         void onSuccess(Users usr);
+        void onSuccess(Courses c);
 
     }
 
     public void userUpdatemap(String key,Users user){
         mRef.child(key).setValue(user);
+    }
+
+    public void readCourses(final String c_name , final OnGetDataListener getdata){
+
+        mRef = FirebaseDatabase.getInstance().getReference("Courses");
+        mRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                course = dataSnapshot.child(c_name).getValue(Courses.class);
+                getdata.onSuccess(course);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+
+
+
+
     }
 
 
