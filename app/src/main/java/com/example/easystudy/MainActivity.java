@@ -24,7 +24,8 @@ public class MainActivity extends AppCompatActivity {
     private EditText email_id , passwd_id;
     private Button login_ ,signup_;
     private FirebaseAuth mAuth;
-    protected Users studentUsers = new Users(null,null);
+    protected Users studentUsers;
+    private boolean check_me = false;
 
 
 
@@ -33,13 +34,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         mAuth = FirebaseAuth.getInstance();
-//        if(mAuth.getCurrentUser()!= null){
-//            startActivity(new Intent(MainActivity.this,HomeActivity.class));
-//            finish();
-//        }
-
         email_id = (EditText)findViewById(R.id._email);
         passwd_id = (EditText)findViewById(R.id._passwd);
         login_ = (Button) findViewById(R.id._login);
@@ -119,10 +114,25 @@ public class MainActivity extends AppCompatActivity {
     private void updateUI(FirebaseUser user) {
 
         if(user != null){
+            new FirebaseHelper().readUser(new FirebaseHelper.OnGetDataListener() {
+                @Override
+                public void onSuccess(Users usr) {
+                    if(usr.getAdmin().equals("0") && check_me == false) {
+                        startActivity(new Intent(MainActivity.this, HomeActivity.class));
+                        check_me = true;
+                    }
+                    else if(usr.getAdmin().equals("1") && check_me == false) {
+                        startActivity(new Intent(MainActivity.this, adminActivity.class));
+                        check_me = true;
+                    }
+                }
 
-            startActivity(new Intent(MainActivity.this,HomeActivity.class));
-            // new FirebaseHelper().readUser();
-            // studentUsers
+                @Override
+                public void onSuccess(Courses c) {
+
+                }
+            });
+            check_me = false;
             //    user = FirebaseAuth.getInstance().getCurrentUser();
         }
 

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Users {
-    private   String Email , Password ;
+    private   String Email , Password , Admin;
     private Map<String,Courses> progress;
 
     public Users(){}
@@ -12,21 +12,15 @@ public class Users {
     public Users (String E, String P){
         this.Email=E;
         this.Password=P;
-//        this.progress = new HashMap<String, Courses>();
-//        progress.put("cpp","0");
-//        progress.put("python","0");
+        this.Admin = "0";
 
     }
-    //    public Users(Users u){
-//        this.Email=u.Email;
-//        this.Password=u.Password;
-//        this.progress = u.progress;
-//
-//    }
+
     public Users(String E, String P,HashMap<String,Courses> hm){
         this.Email=E;
         this.Password=P;
         this.progress = hm;
+        this.Admin = "0";
 
 
     }
@@ -36,6 +30,14 @@ public class Users {
 
     public String getPassword() {
         return Password;
+    }
+
+    public void setAdmin(String admin) {
+        Admin = admin;
+    }
+
+    public String getAdmin() {
+        return Admin;
     }
 
     public Map<String, Courses> getProgress() {

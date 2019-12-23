@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/applogo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".adminActivity"></activity>
         <activity android:name=".cpp_Activity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".MainActivity">
