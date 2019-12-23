@@ -19,12 +19,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class cpp_Activity extends AppCompatActivity {
 
     private TextView vars,strings,if_else;
     private CheckBox vars_checkBox,strings_checkBox,if_else_checkBox;
     private FirebaseHelper fh = new FirebaseHelper();
-    private String helper = "";
+    private Map<String,String> helper = new HashMap<>();
     private boolean existsVar = false;
     private boolean existsStr = false;
     private boolean existsElse = false;
@@ -34,6 +37,7 @@ public class cpp_Activity extends AppCompatActivity {
     private FirebaseAuth auth;
     private FirebaseDatabase database;
     private DatabaseReference myRef;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,22 +89,23 @@ public class cpp_Activity extends AppCompatActivity {
 //                if_else_checkBox = (CheckBox)findViewById(R.id.if_else_checkBox);
 //                //Log.d("cpp ","  --------   "+fh.user.getEmail()+" email  ");
 //
-                helper = fh.user.getProgress().get("cpp");
+//                helper = fh.user.getProgress().get("cpp");
 //
 //                vars_checkBox.setEnabled(false);
 //                strings_checkBox.setEnabled(false);
 //                if_else_checkBox.setEnabled(false);
-                helper = fh.user.getProgress().get("cpp");
-                for(int i=0; i<helper.length(); i++){
-                    if(helper.charAt(i) == '1') {
-                        existsVar = true;
-                    }
-                    else if(helper.charAt(i) == '2'){
-                        existsStr = true;
-                    }
-                    else if(helper.charAt(i) == '3'){
-                        existsElse = true;
-                    }
+//                helper = fh.user.getProgress().get("cpp");
+
+                helper = fh.user.getProgress().get("cpp").getTutorials();
+
+                if(helper.get("variables").equals("1")) {
+                    existsVar = true;
+                }
+                if(helper.get("strings").equals("1")){
+                    existsStr = true;
+                }
+                if(helper.get("if_else").equals("1")){
+                    existsElse = true;
                 }
                 if(existsVar == true){
                     //vars_checkBox.setVisibility(View.INVISIBLE);
@@ -133,10 +138,10 @@ public class cpp_Activity extends AppCompatActivity {
                 vars_checkBox.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {/////////////TODO
-                        helper += '1';
+                        helper.put("variables","1");
                         vars_checkBox.setEnabled(false);
-                        Log.d("var check ", " prog = "+ fh.user.getProgress().get("cpp"));
-                        fh.user.getProgress().put("cpp",""+helper);
+                        // Log.d("var check ", " prog = "+ fh.user.getProgress().get("cpp"));
+                        fh.user.getProgress().get("cpp").setTutorials(helper);
                         fh.userUpdatemap(FirebaseAuth.getInstance().getUid(),fh.user);
 
                     }
@@ -158,10 +163,10 @@ public class cpp_Activity extends AppCompatActivity {
                 strings_checkBox.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        helper += '2';
-                        strings_checkBox.setEnabled(false);
+                        helper.put("strings","1");
+                        vars_checkBox.setEnabled(false);
                         Log.d("var check ", " prog = "+ fh.user.getProgress().get("cpp"));
-                        fh.user.getProgress().put("cpp",""+helper);
+                        fh.user.getProgress().get("cpp").setTutorials(helper);
                         fh.userUpdatemap(FirebaseAuth.getInstance().getUid(),fh.user);
 
                     }
@@ -184,24 +189,21 @@ public class cpp_Activity extends AppCompatActivity {
                 if_else_checkBox.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        helper += '3';
-                        if_else_checkBox.setEnabled(false);
+                        helper.put("if_else","1");
+                        vars_checkBox.setEnabled(false);
                         Log.d("var check ", " prog = "+ fh.user.getProgress().get("cpp"));
-                        fh.user.getProgress().put("cpp",""+helper);
+                        fh.user.getProgress().get("cpp").setTutorials(helper);
                         fh.userUpdatemap(FirebaseAuth.getInstance().getUid(),fh.user);
                     }
                 });
 
 
             }
+            public void onSuccess(Courses c) { }
+
 
         });
     }
 
-    public void update_Ui(){
-        for(int i=0; i<helper.length(); i++){
-            if(helper.charAt(i) == '1')
-                vars_checkBox.setSelected(true);
-        }
-    }
+
 }
