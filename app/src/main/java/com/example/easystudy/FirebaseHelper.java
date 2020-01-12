@@ -26,9 +26,6 @@ public class FirebaseHelper {
     protected Users user ;
     protected Courses course;
 
-    private static String u_email , u_pass;
-    private static HashMap<String ,String> hm;
-
 
 
     public void addUser(Users user){ // adding a user to realtime database
@@ -38,6 +35,8 @@ public class FirebaseHelper {
         Log.d("debug form addUser: ", "createUserWithEmail:success "+FirebaseAuth.getInstance().getCurrentUser().getUid());
 
     }
+
+
 
     public void readUser(final OnGetDataListener getdata){
 

@@ -39,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
 //            startActivity(new Intent(MainActivity.this,HomeActivity.class));
 //            finish();
 //        }
+//        if(mAuth.getCurrentUser()!= null){
+//            mAuth.signOut();
+//        }
 
         email_id = (EditText)findViewById(R.id._email);
         passwd_id = (EditText)findViewById(R.id._passwd);
@@ -64,11 +67,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void login_fun(String email, String password) {
+
         mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("msg :", "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
@@ -88,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void register_fun(final String email, final String pass) {
+
 
         mAuth.createUserWithEmailAndPassword(email, pass)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

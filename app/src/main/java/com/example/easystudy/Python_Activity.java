@@ -2,23 +2,23 @@ package com.example.easystudy;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.CheckBox;
-import android.widget.TextView;
+        import android.content.Intent;
+        import android.net.Uri;
+        import android.os.Bundle;
+        import android.util.Log;
+        import android.view.View;
+        import android.widget.CheckBox;
+        import android.widget.TextView;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+        import com.google.firebase.auth.FirebaseAuth;
+        import com.google.firebase.auth.FirebaseUser;
+        import com.google.firebase.database.DatabaseReference;
+        import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.HashMap;
-import java.util.Map;
+        import java.util.HashMap;
+        import java.util.Map;
 
-public class cpp_Activity extends AppCompatActivity {
+public class Python_Activity extends AppCompatActivity {
 
     private TextView vars,strings,if_else;
     private CheckBox vars_checkBox,strings_checkBox,if_else_checkBox;
@@ -37,9 +37,8 @@ public class cpp_Activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cpp_);
+        setContentView(R.layout.activity_python_);
         auth = FirebaseAuth.getInstance();
         userDemo = auth.getCurrentUser();
         database = FirebaseDatabase.getInstance();
@@ -73,26 +72,9 @@ public class cpp_Activity extends AppCompatActivity {
             @Override
             public void onSuccess(Users usr) {
 
-                Log.d("cpp ","     "+fh.user+" email  "+ fh.user.getEmail());
+                Log.d("py ","     "+fh.user+" email  "+ fh.user.getEmail());
 
-
-//                vars = (TextView)findViewById(R.id.cpp_var);
-//                strings = (TextView)findViewById(R.id.cpp_string);
-//                if_else = (TextView)findViewById(R.id.cpp_if_else);
-//
-//                vars_checkBox = (CheckBox)findViewById(R.id.vars_checkBox);
-//                strings_checkBox = (CheckBox)findViewById(R.id.string_checkBox);
-//                if_else_checkBox = (CheckBox)findViewById(R.id.if_else_checkBox);
-//                //Log.d("cpp ","  --------   "+fh.user.getEmail()+" email  ");
-//
-//                helper = fh.user.getProgress().get("cpp");
-//
-//                vars_checkBox.setEnabled(false);
-//                strings_checkBox.setEnabled(false);
-//                if_else_checkBox.setEnabled(false);
-//                helper = fh.user.getProgress().get("cpp");
-
-                helper = fh.user.getProgress().get("cpp").getTutorials();
+                helper = fh.user.getProgress().get("python").getTutorials();
 
                 if(helper.get("variables").equals("1")) {
                     existsVar = true;
@@ -122,7 +104,7 @@ public class cpp_Activity extends AppCompatActivity {
                     public void onClick(View v) {
                         Intent viewIntent =
                                 new Intent("android.intent.action.VIEW",
-                                        Uri.parse("https://www.w3schools.com/cpp/cpp_variables.asp"));
+                                        Uri.parse("https://www.w3schools.com/python/python_variables.asp"));
                         startActivity(viewIntent);
                         if (existsVar == false) {
                             vars_checkBox.setEnabled(true);
@@ -136,8 +118,8 @@ public class cpp_Activity extends AppCompatActivity {
                     public void onClick(View v) {/////////////TODO
                         helper.put("variables","1");
                         vars_checkBox.setEnabled(false);
-                       // Log.d("var check ", " prog = "+ fh.user.getProgress().get("cpp"));
-                        fh.user.getProgress().get("cpp").setTutorials(helper);
+                        // Log.d("var check ", " prog = "+ fh.user.getProgress().get("cpp"));
+                        fh.user.getProgress().get("python").setTutorials(helper);
                         fh.userUpdatemap(FirebaseAuth.getInstance().getUid(),fh.user);
 
                     }
@@ -148,7 +130,7 @@ public class cpp_Activity extends AppCompatActivity {
                     public void onClick(View v) {
 
                         Intent viewIntent =new Intent("android.intent.action.VIEW",
-                                Uri.parse("https://www.w3schools.com/cpp/cpp_strings.asp"));
+                                Uri.parse("https://www.w3schools.com/python/python_strings.asp"));
                         startActivity(viewIntent);
                         if (existsStr == false) {
                             strings_checkBox.setEnabled(true);
@@ -161,8 +143,8 @@ public class cpp_Activity extends AppCompatActivity {
                     public void onClick(View v) {
                         helper.put("strings","1");
                         vars_checkBox.setEnabled(false);
-                        Log.d("var check ", " prog = "+ fh.user.getProgress().get("cpp"));
-                        fh.user.getProgress().get("cpp").setTutorials(helper);
+                        Log.d("var check ", " prog = "+ fh.user.getProgress().get("python"));
+                        fh.user.getProgress().get("python").setTutorials(helper);
                         fh.userUpdatemap(FirebaseAuth.getInstance().getUid(),fh.user);
 
                     }
@@ -173,7 +155,7 @@ public class cpp_Activity extends AppCompatActivity {
                     public void onClick(View v) {
 
                         Intent viewIntent =new Intent("android.intent.action.VIEW",
-                                Uri.parse("https://www.w3schools.com/cpp/cpp_conditions.asp"));
+                                Uri.parse("https://www.w3schools.com/python/python_conditions.asp"));
                         startActivity(viewIntent);
                         if (existsElse == false) {
                             if_else_checkBox.setEnabled(true);
@@ -187,8 +169,8 @@ public class cpp_Activity extends AppCompatActivity {
                     public void onClick(View v) {
                         helper.put("if_else","1");
                         vars_checkBox.setEnabled(false);
-                        Log.d("var check ", " prog = "+ fh.user.getProgress().get("cpp"));
-                        fh.user.getProgress().get("cpp").setTutorials(helper);
+                       // Log.d("var check ", " prog = "+ fh.user.getProgress().get("cpp"));
+                        fh.user.getProgress().get("python").setTutorials(helper);
                         fh.userUpdatemap(FirebaseAuth.getInstance().getUid(),fh.user);
                     }
                 });
@@ -198,7 +180,7 @@ public class cpp_Activity extends AppCompatActivity {
             public void onSuccess(Courses c) { }
 
 
-            });
+        });
     }
 
 
