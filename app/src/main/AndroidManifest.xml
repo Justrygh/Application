@@ -9,9 +9,12 @@
         android:roundIcon="@mipmap/applogo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".adminActivity"></activity>
+        <activity android:name=".Java_Activity"></activity>
+        <activity android:name=".Python_Activity" />
+        <activity android:name=".csharp_Activity" />
         <activity android:name=".cpp_Activity" />
         <activity android:name=".HomeActivity" />
+        <activity android:name=".adminActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

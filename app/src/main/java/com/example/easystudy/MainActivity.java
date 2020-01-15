@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
         if(user != null){
             new FirebaseHelper().readUser(new FirebaseHelper.OnGetDataListener() {
                 @Override
-                public void onSuccess(Users usr) {
+                public void onSuccess(Users usr){
                     if(usr.getAdmin().equals("0") && check_me == false) {
                         startActivity(new Intent(MainActivity.this, HomeActivity.class));
                         check_me = true;
