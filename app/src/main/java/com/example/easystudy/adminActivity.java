@@ -24,6 +24,7 @@ public class adminActivity extends AppCompatActivity {
     private FirebaseDatabase mdatabase;
     private DatabaseReference mRef ;
     private String ans = "";
+    private boolean isOk = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,7 @@ public class adminActivity extends AppCompatActivity {
                         public void onDataChange(DataSnapshot dataSnapshot) {
                             for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
                                 if (childSnapshot.child("email").getValue().equals(email_id.getText().toString().trim())) {
+                                    isOk = true;
                                     for(DataSnapshot child_data: childSnapshot.child("progress").getChildren()){
                                         if(child_data.getKey().equals(course_id.getText().toString().trim())){
                                             for(DataSnapshot child_answer: child_data.getChildren()) {
@@ -90,6 +92,17 @@ public class adminActivity extends AppCompatActivity {
                                     }
                                 }
                             }
+                            if(isOk == false){
+                                ans = "The current email is not valid";
+                                output_id.setText(ans);
+                                output_id.setVisibility(View.VISIBLE);
+                                email_id.setVisibility(View.GONE);
+                                course_id.setVisibility(View.GONE);
+                                check_id.setVisibility(View.GONE);
+                                back_id.setVisibility(View.VISIBLE);
+                                ans = "";
+                            }
+                            isOk = false;
                         }
 
                         @Override
